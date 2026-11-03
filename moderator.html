@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moderator Dashboard | KhelSetu</title>
+    <!-- Links to your global dark theme -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header class="navbar bg-secondary">
+        <div class="nav-brand">
+            <h1 class="text-primary">Moderator Control Panel</h1>
+        </div>
+        <div class="nav-user-controls">
+            <span id="moderator-email" class="text-muted">Loading user...</span>
+            <button id="logout-btn" class="btn-secondary">Logout</button>
+        </div>
+    </header>
+
+    <!-- Main Dashboard Layout -->
+    <main class="dashboard-container grid-layout">
+        
+        <!-- Section A: Add New Facility Form -->
+        <section class="facility-setup bg-secondary card">
+            <h2 class="text-primary">Add New Facility</h2>
+            <form id="add-facility-form" class="form-group">
+                
+                <div class="input-group">
+                    <label for="facility-name" class="text-muted">Facility Name</label>
+                    <input type="text" id="facility-name" class="bg-base text-primary" placeholder="e.g., Main Cricket Ground" required>
+                </div>
+
+                <div class="time-inputs row">
+                    <div class="input-group">
+                        <label for="start-time" class="text-muted">Start Time</label>
+                        <input type="time" id="start-time" class="bg-base text-primary" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="end-time" class="text-muted">End Time</label>
+                        <input type="time" id="end-time" class="bg-base text-primary" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="slot-duration" class="text-muted">Slot Duration</label>
+                    <select id="slot-duration" class="bg-base text-primary" required>
+                        <option value="30">30 mins</option>
+                        <option value="60">1 hour</option>
+                        <option value="120">2 hours</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="create-facility-btn" class="btn-primary">Create Facility</button>
+            </form>
+        </section>
+
+        <!-- Section B: Staff Management -->
+        <section class="staff-management bg-secondary card">
+            <h2 class="text-primary">Staff Management</h2>
+            <form id="add-admin-form" class="form-group">
+                <div class="input-group">
+                    <label for="new-admin-email" class="text-muted">New Admin Email</label>
+                    <input type="email" id="new-admin-email" class="bg-base text-primary" placeholder="Enter admin's email" required>
+                </div>
+                <button type="submit" id="authorize-admin-btn" class="btn-primary">Authorize Admin</button>
+            </form>
+        </section>
+
+        <!-- Section C: Pending Student Approvals -->
+        <section class="student-approvals bg-secondary card">
+            <div class="section-header">
+                <h2 class="text-primary">Pending Student Approvals</h2>
+                <button id="bulk-approve-btn" class="btn-primary">Approve All Pending</button>
+            </div>
+            
+            <div id="pending-students-list" class="approval-list">
+                <!-- Example of an injected pending student row -->
+                <!-- 
+                <div class="approval-item bg-base">
+                    <p class="text-primary">student123@charusat.edu.in</p>
+                    <div class="action-buttons">
+                        <button class="btn-approve" style="background-color: green; color: white;">Approve</button>
+                        <button class="btn-reject" style="background-color: red; color: white;">Reject</button>
+                    </div>
+                </div>
+                -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Project JavaScript Files -->
+    <script type="module" src="js/firebase-init.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/moderator.js"></script>
+</body>
+</html>

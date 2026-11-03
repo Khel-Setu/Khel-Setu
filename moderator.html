@@ -46,14 +46,13 @@
 
                 <div class="time-inputs row">
                     <div class="input-group">
-                        <label for="start-time" class="text-muted">Start Time</label>
-                        <input type="time" id="start-time" class="bg-base text-primary" required>
+                        <div class="khelsetu-time-picker" data-id="start-time" data-label="Start Time"></div>
                     </div>
                     <div class="input-group">
-                        <label for="end-time" class="text-muted">End Time</label>
-                        <input type="time" id="end-time" class="bg-base text-primary" required>
+                        <div class="khelsetu-time-picker" data-id="end-time" data-label="End Time"></div>
                     </div>
                 </div>
+                <audio id="wheel-tick-sound" src="audio/tick.mp3" preload="auto"></audio>
 
                 <div class="input-group">
                     <label for="slot-duration" class="text-muted">Slot Duration</label>
@@ -108,5 +107,6 @@
     <script type="module" src="js/auth.js"></script>
     <script type="module" src="js/moderator.js"></script>
     <script src="js/theme.js"></script>
+    <script src="js/time-picker.js"></script>
 </body>
 </html>

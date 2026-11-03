@@ -79,11 +79,65 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
 }
 
+
+/* ==========================================================================
+   THEME TOGGLE SWITCH
+   ========================================================================== */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+    margin-right: 15px; /* Spacing between toggle and login button */
+}
+
+/* Hide the default HTML checkbox */
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The pill track */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #FFFFFF; 
+    border: 2px solid #18181B; /* Stays black/graphite in both modes */
+    border-radius: 34px;
+    transition: 0.3s;
+}
+
+/* The solid circle inside */
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #18181B; /* Stays black/graphite in both modes */
+    border-radius: 50%;
+    transition: 0.3s ease-in-out;
+}
+
+/* Dark Mode Background (When checked) */
+input:checked + .slider {
+    background-color: var(--accent); /* Lime Spark */
+}
+
+/* Slide the circle to the right when clicked (checked) */
+input:checked + .slider::before {
+    transform: translateX(24px);
+}
+
+
 /* ==========================================================================
    INTERACTIVE ELEMENTS (The 10% Accent)
    ========================================================================== */
 
-button, .cta-btn {
+button, .btn-primary, .btn-secondary, .cta-btn {
     cursor: pointer;
     font-weight: 600;
     border-radius: 8px;
@@ -96,12 +150,12 @@ button, .cta-btn {
     text-align: center;
 }
 
-button:hover, .cta-btn:hover {
+button:hover, .btn-primary:hover, .btn-secondary:hover, .cta-btn:hover {
     transform: translateY(-2px);
     filter: brightness(1.1);
 }
 
-button:active, .cta-btn:active {
+button:active, .btn-primary:active, .btn-secondary:active, .cta-btn:active {
     transform: translateY(0);
 }
 

@@ -222,6 +222,13 @@ input:focus, select:focus {
     flex: 1;
 }
 
+/* Make the native clock/calendar icon white in Dark Mode */
+[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator,
+[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
 /* ==========================================================================
    PAGE-SPECIFIC LAYOUTS
    ========================================================================== */

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | KhelSetu</title>
+    <!-- Links to your global dark theme -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-page">
+
+    <!-- Centered Login Container -->
+    <main class="login-container">
+        
+        <!-- Login Form Box -->
+        <div class="login-card bg-secondary card">
+            
+            <div class="login-header">
+                <h1 class="text-primary">KhelSetu</h1>
+                <p class="text-muted">Sports Facility Booking Platform</p>
+            </div>
+
+            <form id="login-form" class="form-group">
+                <!-- Email / User ID Input -->
+                <div class="input-group">
+                    <label for="email" class="text-muted">Email / User ID</label>
+                    <input type="email" id="email" class="bg-base text-primary" placeholder="Enter your email" required>
+                </div>
+
+                <!-- Password Input -->
+                <div class="input-group">
+                    <label for="password" class="text-muted">Password</label>
+                    <input type="password" id="password" class="bg-base text-primary" placeholder="Enter your password" required>
+                </div>
+
+                <!-- Action Button -->
+                <button type="submit" id="sign-in-btn" class="btn-primary">Sign In</button>
+            </form>
+
+            <!-- Feedback Display -->
+            <div class="feedback-container">
+                <p id="login-feedback" class="text-muted" style="text-align: center; min-height: 24px; margin-top: 15px;">
+                    <!-- Errors like "Wrong password" or "Account pending Moderator approval" will be injected here -->
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Project JavaScript Files -->
+    <script type="module" src="js/firebase-init.js"></script>
+    <!-- auth.js will handle the Firebase Authentication and role-based routing -->
+    <script type="module" src="js/auth.js"></script>
+</body>
+</html>

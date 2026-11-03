@@ -2,8 +2,8 @@
    KHELSETU DESIGN SYSTEM & COLOR VARIABLES
    ========================================================================== */
 
-/* Default State (Dark Mode) */
-:root {
+/* Dark Mode override */
+[data-theme="light"] {
     /* 60% Base Canvas */
     --bg-base: #18181B; /* Graphite */
     
@@ -22,8 +22,8 @@
     --theme-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
-/* Light Mode Override */
-[data-theme="light"] {
+/* default light mode */
+:root {
     /* 60% Base Canvas */
     --bg-base: #FDFBF7; /* Warm Vanilla / Cream */
     

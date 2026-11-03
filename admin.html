@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | KhelSetu</title>
+    <!-- Links to your global dark theme -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header class="navbar bg-secondary">
+        <div class="nav-brand">
+            <h1 class="text-primary">Facility Manager</h1>
+        </div>
+        <div class="nav-user-controls">
+            <!-- Displays Admin email and their assigned facility -->
+            <span id="admin-info" class="text-muted">Loading user...</span>
+            <button id="logout-btn" class="btn-secondary">Logout</button>
+        </div>
+    </header>
+
+    <!-- Main Dashboard Layout -->
+    <main class="dashboard-container">
+        
+        <!-- Top Section: Student Invitations -->
+        <section class="invite-section bg-secondary card">
+            <h2 class="text-primary">Invite New Student</h2>
+            <form id="invite-student-form" class="form-group row-layout">
+                <div class="input-group">
+                    <label for="student-email-invite" class="text-muted">Student Email</label>
+                    <input type="email" id="student-email-invite" class="bg-base text-primary" placeholder="student@charusat.edu.in" required>
+                </div>
+                <button type="submit" id="send-invite-btn" class="btn-primary">Send Invite Request</button>
+            </form>
+        </section>
+
+        <!-- Main Section: Live Booking Feed -->
+        <section class="live-feed-section bg-secondary card">
+            <div class="section-header">
+                <h2 class="text-primary">Live Bookings & Check-ins</h2>
+                <!-- Bulk check-in action -->
+                <button id="bulk-admit-btn" class="btn-primary">Admit All for Current Slot</button>
+            </div>
+            
+            <div id="live-booking-feed" class="booking-feed">
+                <!-- Example of an injected live booking item -->
+                <!-- 
+                <div class="feed-item bg-base">
+                    <div class="feed-info">
+                        <p class="text-primary">Vraj (vraj@charusat.edu.in)</p>
+                        <p class="text-muted">10:00 AM - 11:00 AM</p>
+                        <span class="status-badge text-muted">Status: Awaiting Arrival</span>
+                    </div>
+                    <div class="feed-actions">
+                        <button class="btn-primary confirm-arrival-btn">Confirm Arrival</button>
+                    </div>
+                </div>
+                -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Project JavaScript Files -->
+    <script type="module" src="js/firebase-init.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/admin.js"></script>
+</body>
+</html>

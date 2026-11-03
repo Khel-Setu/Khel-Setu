@@ -2,40 +2,24 @@
    KHELSETU DESIGN SYSTEM & COLOR VARIABLES
    ========================================================================== */
 
-/* Dark Mode override */
-[data-theme="light"] {
-    /* 60% Base Canvas */
-    --bg-base: #18181B; /* Graphite */
-    
-    /* 30% Structural Elements */
-    --bg-secondary: #27272A; /* Light Graphite */
-    
-    /* 10% High-Impact Accent */
+/* Default State (Now LIGHT Mode) */
+:root {
+    --bg-base: #FDFBF7; /* Warm Vanilla / Cream */
+    --bg-secondary: #FFFFFF; /* Pure White */
     --accent: #B6FF2E; /* Lime Spark */
-    
-    /* Typography */
-    --text-primary: #FDFBF7; /* Cream / Off-White */
-    --text-muted: #A1A1AA; /* Muted Gray */
+    --text-primary: #18181B; /* Dark Graphite */
+    --text-muted: #52525B; /* Medium Gray */
     --text-on-accent: #18181B; /* Graphite */
-
-    /* Universal Transition for smooth toggling */
     --theme-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
-/* default light mode */
-:root {
-    /* 60% Base Canvas */
-    --bg-base: #FDFBF7; /* Warm Vanilla / Cream */
-    
-    /* 30% Structural Elements */
-    --bg-secondary: #FFFFFF; /* Pure White */
-    
-    /* 10% High-Impact Accent */
+/* Override State (Now DARK Mode) */
+[data-theme="dark"] {
+    --bg-base: #18181B; /* Graphite */
+    --bg-secondary: #27272A; /* Light Graphite */
     --accent: #B6FF2E; /* Lime Spark */
-    
-    /* Typography */
-    --text-primary: #18181B; /* Dark Graphite */
-    --text-muted: #52525B; /* Medium Gray */
+    --text-primary: #FDFBF7; /* Cream / Off-White */
+    --text-muted: #A1A1AA; /* Muted Gray */
     --text-on-accent: #18181B; /* Graphite */
 }
 

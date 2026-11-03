@@ -72,6 +72,12 @@ body {
     gap: 1.5rem;
 }
 
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 /* Cards & Containers (No heavy borders, relying on contrast) */
 .card {
     border-radius: 12px;

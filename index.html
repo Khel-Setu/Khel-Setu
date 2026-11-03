@@ -15,11 +15,17 @@
             <h1 class="text-primary">KhelSetu</h1>
         </div>
         <div class="nav-links">
-            <!-- Custom Sliding Toggle Switch -->
-            <label class="theme-switch">
-            <input type="checkbox" id="theme-toggle">
-            <span class="slider"></span>
-            </label>
+
+            <div class="theme-wrapper">
+                    <!-- Added id="theme-label" here -->
+                <span id="theme-label" class="text-muted" style="font-size: 0.9rem; font-weight: 600;">Dark Mode</span>
+
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
             <a href="login.html" class="btn-primary">Portal Login</a>
         </div>
     </header>

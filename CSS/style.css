@@ -33,6 +33,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
 body {
     background-color: var(--bg-base);
     color: var(--text-primary);
@@ -65,6 +66,15 @@ body {
     top: 0;
     z-index: 100;
 }
+
+
+.nav-brand img {
+    width: 150px;
+    height: 55px;
+    object-fit: contain;
+    display: block;
+}
+
 
 .nav-user-controls {
     display: flex;

@@ -61,7 +61,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -70,11 +70,22 @@ body {
 
 .nav-brand img {
     width: 150px;
-    height: 55px;
+    height: 65px;
     object-fit: contain;
     display: block;
 }
-
+.brand-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 55px;
+}
+.brand-link  {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
 
 .nav-user-controls {
     display: flex;
@@ -87,6 +98,8 @@ body {
     align-items: center;
     gap: 1rem;
 }
+
+
 
 /* Cards & Containers (No heavy borders, relying on contrast) */
 .card {

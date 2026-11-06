@@ -179,9 +179,17 @@ button, .btn-primary, .btn-secondary, .cta-btn {
     text-align: center;
 }
 
-button:hover, .btn-primary:hover, .btn-secondary:hover, .cta-btn:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
+/* Premium Button Hover Animation */
+button:hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+.cta-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.08);
+    box-shadow: 0 6px 18px rgba(182, 255, 46, 0.25);
+}
+
+
 }
 
 button:active, .btn-primary:active, .btn-secondary:active, .cta-btn:active {

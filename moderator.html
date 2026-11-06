@@ -12,10 +12,13 @@
     <!-- Top Navigation Bar -->
     <header class="navbar bg-secondary">
         <div class="nav-brand">
-            <h1 class="text-primary">Moderator Control Panel</h1>
+            <a href="moderator.html" class="brand-link" style="text-decoration: none;">
+                <img src="./khelsetu_symbol.svg" alt="KhelSetu Logo">
+                <h1 class="text-primary">Moderator Control Panel</h1>
+            </a>                
         </div>
         <div class="nav-user-controls">
-            <span id="moderator-email" class="text-muted">Loading user...</span>
+            <span id="moderator-email" class="text-muted">Username</span>
 
             <div class="theme-wrapper">
                     <!-- Added id="theme-label" here -->
@@ -35,7 +38,7 @@
     <main class="dashboard-container grid-layout">
         
         <!-- Section A: Add New Facility Form -->
-        <section class="facility-setup bg-secondary card">
+        <section class="facility-setup bg-secondary card animate-up delay-1">
             <h2 class="text-primary">Add New Facility</h2>
             <form id="add-facility-form" class="form-group">
                 
@@ -68,7 +71,7 @@
         </section>
 
         <!-- Section B: Staff Management -->
-        <section class="staff-management bg-secondary card">
+        <section class="staff-management bg-secondary card animate-up delay-2">
             <h2 class="text-primary">Staff Management</h2>
             <form id="add-admin-form" class="form-group">
                 <div class="input-group">
@@ -80,7 +83,7 @@
         </section>
 
         <!-- Section C: Pending Student Approvals -->
-        <section class="student-approvals bg-secondary card">
+        <section class="student-approvals bg-secondary card animate-up delay-3">
             <div class="section-header">
                 <h2 class="text-primary">Pending Student Approvals</h2>
                 <button id="bulk-approve-btn" class="btn-primary">Approve All Pending</button>

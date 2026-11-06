@@ -12,10 +12,13 @@
     <!-- Top Navigation Bar -->
     <header class="navbar bg-secondary">
         <div class="nav-brand">
-            <h1 class="text-primary">KhelSetu</h1>
+            <a href="moderator.html" class="brand-link" style="text-decoration: none;">
+                <img src="./khelsetu_symbol.svg" alt="KhelSetu Logo">
+                <h1 class="text-primary">Student Dashboard</h1>
+            </a>                
         </div>
         <div class="nav-user-controls">
-            <span id="student-email" class="text-muted">Loading user...</span>
+            <span id="student-email" class="text-muted">Username</span>
 
             <div class="theme-wrapper">
                     <!-- Added id="theme-label" here -->
@@ -35,7 +38,7 @@
     <main class="dashboard-container">
         
         <!-- Left/Main Column: Booking Interface -->
-        <section class="booking-interface bg-secondary card">
+        <section class="booking-interface bg-secondary card animate-up delay-1">
             <h2 class="text-primary">Book a Facility</h2>
             
             <!-- Facility Selector -->
@@ -64,7 +67,7 @@
         </section>
 
         <!-- Right/Side Column: Active Bookings -->
-        <aside class="my-bookings bg-secondary card">
+        <aside class="my-bookings bg-secondary card animate-up delay-2">
             <h2 class="text-primary">My Bookings</h2>
             
             <div id="active-bookings-list" class="booking-list">

@@ -10,7 +10,12 @@
     --text-primary: #18181B; /* Dark Graphite */
     --text-muted: #52525B; /* Medium Gray */
     --text-on-accent: #18181B; /* Graphite */
-    --theme-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    --theme-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out, background 0.3s ease-in-out;
+    
+    /* Light Mode Glassmorphism (Light Tinted Cards) */
+    --glass-bg: rgba(253, 251, 247, 0.75); /* Whitish tint for readability */
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --glass-shadow: rgba(0, 0, 0, 0.1);
 }
 
 /* Override State (Now DARK Mode) */
@@ -21,6 +26,11 @@
     --text-primary: #FDFBF7; /* Cream / Off-White */
     --text-muted: #A1A1AA; /* Muted Gray */
     --text-on-accent: #18181B; /* Graphite */
+    
+    /* Dark Mode Glassmorphism (Dark Tinted Cards) */
+    --glass-bg: rgba(24, 24, 27, 0.75); /* Dark graphite tint */
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.5);
 }
 
 /* ==========================================================================
@@ -32,7 +42,6 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 
 body {
     background-color: var(--bg-base);
@@ -52,7 +61,7 @@ body {
 .bg-secondary { background-color: var(--bg-secondary); transition: var(--theme-transition); }
 
 /* ==========================================================================
-   STRUCTURAL COMPONENTS (The 30%)
+   STRUCTURAL COMPONENTS
    ========================================================================== */
 
 /* Navbar */
@@ -67,20 +76,26 @@ body {
     z-index: 100;
 }
 
+.nav-brand {
+    display: flex;
+    align-items: center;
+}
 
 .nav-brand img {
-    width: 150px;
-    height: 65px;
+    height: 60px;
+    width: auto;
     object-fit: contain;
-    display: block;
 }
+
 .brand-link {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    gap: 55px;
+    align-items: center; /* This locks them side-by-side */
+    gap: 25px; /* Keeps the text right next to the logo */
+    text-decoration: none;
 }
-.brand-link  {
+
+.brand-link h1 {
     margin: 0;
     font-size: 1.8rem;
     font-weight: 700;
@@ -99,15 +114,12 @@ body {
     gap: 1rem;
 }
 
-
-
-/* Cards & Containers (No heavy borders, relying on contrast) */
+/* Base Card Styles */
 .card {
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
 }
-
 
 /* ==========================================================================
    THEME TOGGLE SWITCH
@@ -117,28 +129,25 @@ body {
     display: inline-block;
     width: 50px;
     height: 26px;
-    margin-right: 15px; /* Spacing between toggle and login button */
+    margin-right: 15px;
 }
 
-/* Hide the default HTML checkbox */
 .theme-switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-/* The pill track */
 .slider {
     position: absolute;
     cursor: pointer;
     top: 0; left: 0; right: 0; bottom: 0;
     background-color: #FFFFFF; 
-    border: 2px solid #18181B; /* Stays black/graphite in both modes */
+    border: 2px solid #18181B;
     border-radius: 34px;
     transition: 0.3s;
 }
 
-/* The solid circle inside */
 .slider::before {
     position: absolute;
     content: "";
@@ -146,26 +155,22 @@ body {
     width: 16px;
     left: 3px;
     bottom: 3px;
-    background-color: #18181B; /* Stays black/graphite in both modes */
+    background-color: #18181B;
     border-radius: 50%;
     transition: 0.3s ease-in-out;
 }
 
-/* Dark Mode Background (When checked) */
 input:checked + .slider {
-    background-color: var(--accent); /* Lime Spark */
+    background-color: var(--accent);
 }
 
-/* Slide the circle to the right when clicked (checked) */
 input:checked + .slider::before {
     transform: translateX(24px);
 }
 
-
 /* ==========================================================================
-   INTERACTIVE ELEMENTS (The 10% Accent)
+   INTERACTIVE ELEMENTS
    ========================================================================== */
-
 button, .btn-primary, .btn-secondary, .cta-btn {
     cursor: pointer;
     font-weight: 600;
@@ -179,7 +184,6 @@ button, .btn-primary, .btn-secondary, .cta-btn {
     text-align: center;
 }
 
-/* Premium Button Hover Animation */
 button:hover,
 .btn-primary:hover,
 .btn-secondary:hover,
@@ -188,9 +192,6 @@ button:hover,
     filter: brightness(1.08);
     box-shadow: 0 6px 18px rgba(182, 255, 46, 0.25);
 }
-
-
-
 
 button:active, .btn-primary:active, .btn-secondary:active, .cta-btn:active {
     transform: translateY(0);
@@ -202,13 +203,11 @@ button:disabled {
     transform: none;
 }
 
-/* Primary Button (Strictly using Accent) */
 .btn-primary {
     background-color: var(--accent);
     color: var(--text-on-accent);
 }
 
-/* Secondary Button (Blends with UI) */
 .btn-secondary {
     background-color: transparent;
     color: var(--text-primary);
@@ -218,7 +217,6 @@ button:disabled {
 /* ==========================================================================
    FORMS & INPUTS
    ========================================================================== */
-
 .form-group {
     display: flex;
     flex-direction: column;
@@ -249,12 +247,10 @@ input:focus, select:focus {
     display: flex;
     gap: 1rem;
 }
+
 .row > .input-group {
     flex: 1;
 }
-
-
-
 
 /* ==========================================================================
    PAGE-SPECIFIC LAYOUTS
@@ -264,233 +260,192 @@ input:focus, select:focus {
 .login-page {
     justify-content: center;
     align-items: center;
+    /* Apply the stadium background to the full screen */
+    background-image: url('../Neon\ Multisport\ Stadium\ Collage.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
 .login-container {
     width: 100%;
     max-width: 450px;
     padding: 2rem;
+    z-index: 1; 
 }
+
+/* Glassmorphism Effect for the Login Card */
+.login-card {
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px var(--glass-shadow);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: var(--theme-transition);
+    border-radius: 16px;
+}
+
 .login-header {
     text-align: center;
     margin-bottom: 2rem;
 }
 
-/* 2. Landing Page */
-
-
-.landing-container {
-    padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+/* Optional: Make inputs slightly transparent to blend with the glass card */
+.login-card input {
+    background: rgba(255, 255, 255, 0.4) !important; 
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(4px);
 }
 
+[data-theme="dark"] .login-card input {
+    background: rgba(0, 0, 0, 0.3) !important;
+}
 
-/* KhelSetu Hero Background */
+/* 2. Landing Page Layout */
+.landing-container {
+    width: 100%;
+    max-width: 100%;
+    min-height: calc(100vh - 97px);
+    
+    /* Background Picture Config */
+    background-image: url('../Neon\ Multisport\ Stadium\ Collage.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Optional parallax feel */
+    
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+/* KhelSetu Hero Glass Card */
 .hero-section {
-    position: relative;
-    isolation: isolate;
-    min-height: 500px;
-    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    margin-bottom: 5rem;
+    padding: 4rem 2rem;
+    border-radius: 24px;
+    
+    /* Glassmorphism Effect */
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px var(--glass-shadow);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: var(--theme-transition);
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-/* Background image with blur */
-.hero-section::before {
-    content: "";
-    position: absolute;
-    inset: -8px;
-    background-image: url("../Neon Multisport Stadium Collage.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    filter: blur(5px);
-    z-index: -2;
-
-    /* Slow background movement */
-    animation: heroBackgroundMove 20s ease-in-out infinite;
-}
-
-/* Background animation */
-@keyframes heroBackgroundMove {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.08);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Reduced motion accessibility */
-@media (prefers-reduced-motion: reduce) {
-    .hero-section::before {
-        animation: none;
-    }
-}
-
-/* Dark overlay */
-.hero-section::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(12, 5, 30, 0.45);
-    z-index: -1;
-}
-
-/* Keep hero content visible */
-.hero-section > * {
-    position: relative;
-    z-index: 1;
-}
-
-.hero-section {
-    text-align: center;
-    margin-bottom: 5rem;
-}
 .hero-title {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
+    color: var(--text-primary) !important; /* Overridden to support light/dark switch properly */
+    text-shadow: none;
 }
+
 .hero-mission {
     font-size: 1.25rem;
     max-width: 600px;
     margin: 0 auto 2.5rem;
+    color: var(--text-muted) !important;
+    text-shadow: none;
 }
 
+.hero-section .cta-btn {
+    font-weight: 600;
+}
+
+/* Feature Cards Grid */
+.features-section {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    /* Glassmorphism Effect */
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px var(--glass-shadow);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: var(--theme-transition), opacity 0.7s ease, transform 0.7s ease;
+    border-radius: 16px;
+    
+    opacity: 0;
+    transform: translateY(35px);
+}
+
+.feature-card h3 {
+    margin-bottom: 1rem;
+}
 
 /* =================================
-   HERO SECTION ENTRANCE ANIMATION
+   ANIMATIONS
    ================================= */
 
-/* Initial animation */
 @keyframes fadeSlideUp {
     from {
         opacity: 0;
         transform: translateY(30px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* Hero Heading */
 .hero-title {
     animation: fadeSlideUp 0.8s ease-out both;
     animation-delay: 0.2s;
 }
 
-/* Hero Paragraph */
 .hero-mission {
     animation: fadeSlideUp 0.8s ease-out both;
     animation-delay: 0.5s;
 }
 
-/* Hero Button */
 .hero-cta {
     animation: fadeSlideUp 0.8s ease-out both;
     animation-delay: 0.8s;
 }
 
-/* Accessibility: Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .hero-title,
-    .hero-mission,
-    .hero-cta {
-        animation: none;
-        opacity: 1;
-        transform: none;
-    }
-}
-
-/* =================================
-   HERO BACKGROUND SLOW MOVEMENT
-   ================================= */
-
-@keyframes heroBackgroundMove {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.08);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-.hero::before {
-    animation: heroBackgroundMove 20s ease-in-out infinite;
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-    .hero::before {
-        animation: none;
-    }
-}
-
-.features-section {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-.feature-card h3 {
-    margin-bottom: 1rem;
-}
-
-/* =================================
-   FEATURE CARD SCROLL REVEAL
-   ================================= */
-
-.feature-card {
-    opacity: 0;
-    transform: translateY(35px);
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-}
-
-/* Visible state */
 .feature-card.show {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Stagger effect */
-.feature-card:nth-child(1) {
-    transition-delay: 0.1s;
-}
+.feature-card:nth-child(1) { transition-delay: 0.1s; }
+.feature-card:nth-child(2) { transition-delay: 0.25s; }
+.feature-card:nth-child(3) { transition-delay: 0.4s; }
 
-.feature-card:nth-child(2) {
-    transition-delay: 0.25s;
-}
-
-.feature-card:nth-child(3) {
-    transition-delay: 0.4s;
-}
-
-/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
+    .hero-title,
+    .hero-mission,
+    .hero-cta,
     .feature-card {
+        animation: none;
         opacity: 1;
         transform: none;
         transition: none;
     }
 }
 
-
-/* 3. Dashboard Layouts (Student, Admin, Moderator) */
+/* ==========================================================================
+   DASHBOARD LAYOUTS & TIME PICKER 
+   (Kept untouched as requested)
+   ========================================================================== */
 .dashboard-container {
     padding: 2rem;
     max-width: 1400px;
@@ -498,13 +453,13 @@ input:focus, select:focus {
     width: 100%;
     display: grid;
     gap: 2rem;
-    grid-template-columns: 2fr 1fr; /* Main area and side panel */
+    grid-template-columns: 2fr 1fr;
 }
 
-/* Grid Override for Moderator/Full Width Pages */
 .dashboard-container.grid-layout {
     grid-template-columns: 1fr;
 }
+
 @media (min-width: 1024px) {
     .dashboard-container.grid-layout {
         grid-template-columns: 1fr 1fr;
@@ -514,10 +469,8 @@ input:focus, select:focus {
     }
 }
 
-/* Time Grid specific */
-.time-grid-container {
-    margin: 2rem 0;
-}
+.time-grid-container { margin: 2rem 0; }
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -525,7 +478,6 @@ input:focus, select:focus {
     margin-top: 1rem;
 }
 
-/* Lists and Feeds (Admin & Student Side Panels) */
 .booking-list, .booking-feed, .approval-list {
     margin-top: 1.5rem;
     display: flex;
@@ -567,7 +519,7 @@ input:focus, select:focus {
     top: calc(100% + 8px);
     left: 0;
     width: 320px;
-    background-color: #18181B; /* Dark Graphite */
+    background-color: #18181B;
     border: 1px solid #2c2c2e;
     border-radius: 12px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
@@ -581,7 +533,6 @@ input:focus, select:focus {
 .picker-mode-wheels.active { display: block; }
 .drum-container-overlay { display: flex; align-items: center; justify-content: center; height: 100%; position: relative; gap: 4px;}
 
-/* Highlight Row Setup */
 .highlight-row {
     position: absolute;
     top: 50%;
@@ -600,7 +551,7 @@ input:focus, select:focus {
 .hl-box {
     flex: 1;
     height: 100%;
-    border: 2px solid var(--accent); /* Lime Spark */
+    border: 2px solid var(--accent); 
     border-radius: 6px;
 }
 
@@ -610,7 +561,7 @@ input:focus, select:focus {
     font-weight: bold;
     padding: 0 4px;
 }
-.hl-spacer { width: 10px; } /* Space before AM/PM */
+.hl-spacer { width: 10px; } 
 
 .wheel-drum {
     flex: 1;
@@ -671,20 +622,14 @@ input:focus, select:focus {
 .confirm-btn { background: var(--accent); color: #18181B; border: none; padding: 8px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; }
 
 
-
-
-/* Fix hero text visibility in Light and Dark Mode */
-
-.hero-section .hero-title {
-    color: #FFFFFF !important;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+/* =================================
+   DASHBOARD ANIMATIONS
+   ================================= */
+.animate-up {
+    animation: fadeSlideUp 0.6s ease-out both;
 }
 
-.hero-section .hero-mission {
-    color: #FFFFFF !important;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
-}
-
-.hero-section .cta-btn {
-    font-weight: 600;
-}
+/* Stagger delays so cards load one after another */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.25s; }
+.delay-3 { animation-delay: 0.4s; }

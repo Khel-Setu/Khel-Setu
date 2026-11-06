@@ -12,11 +12,14 @@
     <!-- Top Navigation Bar -->
     <header class="navbar bg-secondary">
         <div class="nav-brand">
-            <h1 class="text-primary">Facility Manager</h1>
+            <a href="moderator.html" class="brand-link" style="text-decoration: none;">
+                <img src="./khelsetu_symbol.svg" alt="KhelSetu Logo">
+                <h1 class="text-primary">Facility Manager</h1>
+            </a>                
         </div>
         <div class="nav-user-controls">
             <!-- Displays Admin email and their assigned facility -->
-            <span id="admin-info" class="text-muted">Loading user...</span>
+            <span id="admin-info" class="text-muted">Username</span>
 
             <div class="theme-wrapper">
                     <!-- Added id="theme-label" here -->
@@ -36,7 +39,7 @@
     <main class="dashboard-container">
         
         <!-- Top Section: Student Invitations -->
-        <section class="invite-section bg-secondary card">
+        <section class="invite-section bg-secondary card animate-up delay-1">
             <h2 class="text-primary">Invite New Student</h2>
             <form id="invite-student-form" class="form-group row-layout">
                 <div class="input-group">
@@ -48,7 +51,7 @@
         </section>
 
         <!-- Main Section: Live Booking Feed -->
-        <section class="live-feed-section bg-secondary card">
+        <section class="live-feed-section bg-secondary card animate-up delay-2">
             <div class="section-header">
                 <h2 class="text-primary">Live Bookings & Check-ins</h2>
                 <!-- Bulk check-in action -->

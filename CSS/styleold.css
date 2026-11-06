@@ -1,0 +1,690 @@
+/* ==========================================================================
+   KHELSETU DESIGN SYSTEM & COLOR VARIABLES
+   ========================================================================== */
+
+/* Default State (Now LIGHT Mode) */
+:root {
+    --bg-base: #FDFBF7; /* Warm Vanilla / Cream */
+    --bg-secondary: #FFFFFF; /* Pure White */
+    --accent: #B6FF2E; /* Lime Spark */
+    --text-primary: #18181B; /* Dark Graphite */
+    --text-muted: #52525B; /* Medium Gray */
+    --text-on-accent: #18181B; /* Graphite */
+    --theme-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+/* Override State (Now DARK Mode) */
+[data-theme="dark"] {
+    --bg-base: #18181B; /* Graphite */
+    --bg-secondary: #27272A; /* Light Graphite */
+    --accent: #B6FF2E; /* Lime Spark */
+    --text-primary: #FDFBF7; /* Cream / Off-White */
+    --text-muted: #A1A1AA; /* Muted Gray */
+    --text-on-accent: #18181B; /* Graphite */
+}
+
+/* ==========================================================================
+   GLOBAL RESET & BASE STYLES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    transition: var(--theme-transition);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Typography Utility Classes */
+.text-primary { color: var(--text-primary); transition: var(--theme-transition); }
+.text-muted { color: var(--text-muted); transition: var(--theme-transition); }
+
+/* Background Utility Classes */
+.bg-base { background-color: var(--bg-base); transition: var(--theme-transition); }
+.bg-secondary { background-color: var(--bg-secondary); transition: var(--theme-transition); }
+
+/* ==========================================================================
+   STRUCTURAL COMPONENTS (The 30%)
+   ========================================================================== */
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+
+.nav-brand img {
+    width: 150px;
+    height: 65px;
+    object-fit: contain;
+    display: block;
+}
+.brand-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 55px;
+}
+.brand-link  {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.nav-user-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+
+/* Cards & Containers (No heavy borders, relying on contrast) */
+.card {
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ==========================================================================
+   THEME TOGGLE SWITCH
+   ========================================================================== */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+    margin-right: 15px; /* Spacing between toggle and login button */
+}
+
+/* Hide the default HTML checkbox */
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The pill track */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #FFFFFF; 
+    border: 2px solid #18181B; /* Stays black/graphite in both modes */
+    border-radius: 34px;
+    transition: 0.3s;
+}
+
+/* The solid circle inside */
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #18181B; /* Stays black/graphite in both modes */
+    border-radius: 50%;
+    transition: 0.3s ease-in-out;
+}
+
+/* Dark Mode Background (When checked) */
+input:checked + .slider {
+    background-color: var(--accent); /* Lime Spark */
+}
+
+/* Slide the circle to the right when clicked (checked) */
+input:checked + .slider::before {
+    transform: translateX(24px);
+}
+
+
+/* ==========================================================================
+   INTERACTIVE ELEMENTS (The 10% Accent)
+   ========================================================================== */
+
+button, .btn-primary, .btn-secondary, .cta-btn {
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Premium Button Hover Animation */
+button:hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+.cta-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.08);
+    box-shadow: 0 6px 18px rgba(182, 255, 46, 0.25);
+}
+
+
+
+
+button:active, .btn-primary:active, .btn-secondary:active, .cta-btn:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Primary Button (Strictly using Accent) */
+.btn-primary {
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+}
+
+/* Secondary Button (Blends with UI) */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--text-muted);
+}
+
+/* ==========================================================================
+   FORMS & INPUTS
+   ========================================================================== */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+input, select {
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    outline: none;
+    font-size: 1rem;
+    width: 100%;
+}
+
+input:focus, select:focus {
+    border-color: var(--accent);
+}
+
+.row {
+    display: flex;
+    gap: 1rem;
+}
+.row > .input-group {
+    flex: 1;
+}
+
+
+
+
+/* ==========================================================================
+   PAGE-SPECIFIC LAYOUTS
+   ========================================================================== */
+
+/* 1. Login Page */
+.login-page {
+    justify-content: center;
+    align-items: center;
+}
+.login-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 2rem;
+}
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* 2. Landing Page */
+
+
+.landing-container {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* KhelSetu Hero Background */
+.hero-section {
+    position: relative;
+    isolation: isolate;
+    min-height: 500px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Background image with blur */
+.hero-section::before{
+    content: "";
+    position: absolute;
+    inset: -8px;
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px);
+    z-index: -2;
+
+    /* Slow background movement */
+    animation: heroBackgroundMove 20s ease-in-out infinite;
+}
+
+/* Background animation */
+@keyframes heroBackgroundMove {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .hero-section::before {
+        animation: none;
+    }
+}
+
+/* Dark overlay */
+.hero-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(12, 5, 30, 0.45);
+    z-index: -1;
+}
+
+/* Keep hero content visible */
+.hero-section > * {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+.hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+}
+.hero-mission {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+}
+
+
+/* =================================
+   HERO SECTION ENTRANCE ANIMATION
+   ================================= */
+
+/* Initial animation */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero Heading */
+.hero-title {
+    animation: fadeSlideUp 0.8s ease-out both;
+    animation-delay: 0.2s;
+}
+
+/* Hero Paragraph */
+.hero-mission {
+    animation: fadeSlideUp 0.8s ease-out both;
+    animation-delay: 0.5s;
+}
+
+/* Hero Button */
+.hero-cta {
+    animation: fadeSlideUp 0.8s ease-out both;
+    animation-delay: 0.8s;
+}
+
+/* Accessibility: Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .hero-title,
+    .hero-mission,
+    .hero-cta {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* =================================
+   HERO BACKGROUND SLOW MOVEMENT
+   ================================= */
+
+@keyframes heroBackgroundMove {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.hero::before {
+    animation: heroBackgroundMove 20s ease-in-out infinite;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .hero::before {
+        animation: none;
+    }
+}
+
+.features-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+.feature-card h3 {
+    margin-bottom: 1rem;
+}
+
+/* =================================
+   FEATURE CARD SCROLL REVEAL
+   ================================= */
+
+.feature-card {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+/* Visible state */
+.feature-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger effect */
+.feature-card:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.feature-card:nth-child(2) {
+    transition-delay: 0.25s;
+}
+
+.feature-card:nth-child(3) {
+    transition-delay: 0.4s;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .feature-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+
+/* 3. Dashboard Layouts (Student, Admin, Moderator) */
+.dashboard-container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 2fr 1fr; /* Main area and side panel */
+}
+
+/* Grid Override for Moderator/Full Width Pages */
+.dashboard-container.grid-layout {
+    grid-template-columns: 1fr;
+}
+@media (min-width: 1024px) {
+    .dashboard-container.grid-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+    .student-approvals {
+        grid-column: span 2;
+    }
+}
+
+/* Time Grid specific */
+.time-grid-container {
+    margin: 2rem 0;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Lists and Feeds (Admin & Student Side Panels) */
+.booking-list, .booking-feed, .approval-list {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+/* TIME PICKER UI */
+.custom-time-picker-container {
+    position: relative;
+    width: 100%;
+    max-width: 280px;
+    font-family: inherit;
+}
+
+.time-trigger-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: var(--bg-secondary);
+    border: 2px solid var(--text-muted);
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+.time-picker-popup {
+    display: none; 
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 320px;
+    background-color: #18181B; /* Dark Graphite */
+    border: 1px solid #2c2c2e;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+.time-picker-popup.active { display: flex; }
+
+/* WHEEL MODE */
+.picker-mode-wheels { display: none; padding: 20px 10px; height: 180px; position: relative; }
+.picker-mode-wheels.active { display: block; }
+.drum-container-overlay { display: flex; align-items: center; justify-content: center; height: 100%; position: relative; gap: 4px;}
+
+/* Highlight Row Setup */
+.highlight-row {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    right: 10px;
+    height: 44px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.hl-box {
+    flex: 1;
+    height: 100%;
+    border: 2px solid var(--accent); /* Lime Spark */
+    border-radius: 6px;
+}
+
+.hl-colon {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0 4px;
+}
+.hl-spacer { width: 10px; } /* Space before AM/PM */
+
+.wheel-drum {
+    flex: 1;
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+    z-index: 10;
+    text-align: center;
+}
+.wheel-drum::-webkit-scrollbar { display: none; }
+.spacer-item { height: 68px; pointer-events: none; }
+
+.drum-item {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.3);
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.drum-item.active { color: #ffffff; font-weight: 600; }
+
+/* KEYBOARD MODE */
+.picker-mode-keyboard { display: none; padding: 30px 20px; flex-direction: column; align-items: center; height: 180px;}
+.picker-mode-keyboard.active { display: flex; }
+
+.keyboard-input-wrapper { display: flex; align-items: center; gap: 8px; }
+.bracket { font-size: 1.8rem; color: rgba(255,255,255,0.4); font-weight: 300; }
+.kb-colon { font-size: 1.5rem; color: #fff; font-weight: bold; }
+.kb-num {
+    width: 50px; height: 50px;
+    background: #222225; border: none; border-radius: 8px;
+    color: #fff; font-size: 1.4rem; text-align: center;
+}
+.kb-num:focus { outline: 2px solid var(--accent); }
+
+.kb-ampm-toggle { display: flex; background: #222225; border-radius: 8px; overflow: hidden; margin-left: 10px;}
+.kb-ampm-btn {
+    background: transparent; border: none; padding: 12px 16px;
+    color: rgba(255,255,255,0.5); font-weight: bold; cursor: pointer;
+}
+.kb-ampm-btn.active { background: var(--accent); color: #18181B; }
+
+.kb-hint { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 15px; }
+.error-msg-text { display: none; color: #ff453a; font-size: 0.8rem; margin-top: 5px; }
+
+/* FOOTER */
+.picker-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 16px; border-top: 1px solid #2c2c2e;
+}
+.toggle-mode-btn { background: none; border: none; color: var(--accent); cursor: pointer; font-size: 0.9rem; }
+.confirm-btn { background: var(--accent); color: #18181B; border: none; padding: 8px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+
+
+
+
+/* Fix hero text visibility in Light and Dark Mode */
+
+.hero-section .hero-title {
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.hero-section .hero-mission {
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+.hero-section .cta-btn {
+    font-weight: 600;
+}

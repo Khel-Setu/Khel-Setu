@@ -190,7 +190,7 @@ button:hover,
 }
 
 
-}
+
 
 button:active, .btn-primary:active, .btn-secondary:active, .cta-btn:active {
     transform: translateY(0);
@@ -253,6 +253,9 @@ input:focus, select:focus {
     flex: 1;
 }
 
+
+
+
 /* ==========================================================================
    PAGE-SPECIFIC LAYOUTS
    ========================================================================== */
@@ -305,6 +308,31 @@ input:focus, select:focus {
     background-repeat: no-repeat;
     filter: blur(5px);
     z-index: -2;
+
+    /* Slow background movement */
+    animation: heroBackgroundMove 20s ease-in-out infinite;
+}
+
+/* Background animation */
+@keyframes heroBackgroundMove {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .hero-section::before {
+        animation: none;
+    }
 }
 
 /* Dark overlay */
@@ -335,6 +363,83 @@ input:focus, select:focus {
     max-width: 600px;
     margin: 0 auto 2.5rem;
 }
+
+
+/* =================================
+   HERO SECTION ENTRANCE ANIMATION
+   ================================= */
+
+/* Initial animation */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero Heading */
+.hero-title {
+    animation: fadeSlideUp 0.8s ease-out both;
+    animation-delay: 0.2s;
+}
+
+/* Hero Paragraph */
+.hero-mission {
+    animation: fadeSlideUp 0.8s ease-out both;
+    animation-delay: 0.5s;
+}
+
+/* Hero Button */
+.hero-cta {
+    animation: fadeSlideUp 0.8s ease-out both;
+    animation-delay: 0.8s;
+}
+
+/* Accessibility: Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .hero-title,
+    .hero-mission,
+    .hero-cta {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* =================================
+   HERO BACKGROUND SLOW MOVEMENT
+   ================================= */
+
+@keyframes heroBackgroundMove {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.hero::before {
+    animation: heroBackgroundMove 20s ease-in-out infinite;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .hero::before {
+        animation: none;
+    }
+}
+
 .features-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -343,6 +448,47 @@ input:focus, select:focus {
 .feature-card h3 {
     margin-bottom: 1rem;
 }
+
+/* =================================
+   FEATURE CARD SCROLL REVEAL
+   ================================= */
+
+.feature-card {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+/* Visible state */
+.feature-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger effect */
+.feature-card:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.feature-card:nth-child(2) {
+    transition-delay: 0.25s;
+}
+
+.feature-card:nth-child(3) {
+    transition-delay: 0.4s;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .feature-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
 
 /* 3. Dashboard Layouts (Student, Admin, Moderator) */
 .dashboard-container {
